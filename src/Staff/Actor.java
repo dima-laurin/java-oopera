@@ -17,29 +17,21 @@ public class Actor extends Person {
         this.height = height;
     }
 
-    @Override
-    public String toString() {
-        return getName() + " " + getSurname() + " (" + height + ")";
-    }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (this.getClass() != obj.getClass()) return false;
-
+        if (!super.equals(obj)) return false;
         Actor actor = (Actor) obj;
-
-        return height == actor.height &&
-                getName().equals(actor.getName()) &&
-                getSurname().equals(actor.getSurname());
+        return this.height == actor.height;
     }
 
     @Override
     public int hashCode() {
-        int hash = getName().hashCode();
-        hash = 31 * hash + getSurname().hashCode();
-        hash = 31 * hash + height;
-        return hash;
+        return super.hashCode() * 31 + height;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " " + getSurname() + " (" + height + ")";
     }
 }

@@ -36,4 +36,24 @@ public abstract class Person {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+
+        Person person = (Person) obj;
+
+        return name.equals(person.name) &&
+                surname.equals(person.surname) &&
+                gender == person.gender;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = name.hashCode();
+        hash = 31 * hash + surname.hashCode();
+        hash = 31 * hash + gender.hashCode();
+        return hash;
+    }
 }
